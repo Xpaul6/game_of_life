@@ -2,9 +2,9 @@
 #include <stdlib.h>
 #include <unistd.h>
 
-#define ROWS 30
-#define COLS 100
-#define SPEED 20
+#define ROWS 40
+#define COLS 150
+#define SPEED 100 // fraction of a second for one tick
 #define SYM_DEAD "-"
 #define SYM_ALIVE "#"
 
@@ -57,14 +57,22 @@ void update_grid(Cell grid[ROWS][COLS]) {
                     }
                 }
             }
-            if (neighbor_counter <= 1 && grid[y][x].currentState == ALIVE) {
-                grid[y][x].nextState = DEAD;
-            } else if (neighbor_counter <= 3 && grid[y][x].currentState == ALIVE) {
-                grid[y][x].nextState = ALIVE;
-            } else if (neighbor_counter <= 8 && grid[y][x].currentState == ALIVE) {
-                grid[y][x].nextState = DEAD;
-            } else if (neighbor_counter == 3 && grid[y][x].currentState == DEAD) {
-                grid[y][x].nextState = ALIVE;
+
+            Cell currentCell = grid[y][x];
+            if (currentCell.currentState == ALIVE) {
+                if (neighbor_counter < 2) {
+                    currentCell.nextState = DEAD;
+                } else if (neighbor_counter < 4) {
+                    currentCell.nextState = ALIVE;
+                } else {
+                    currentCell.nextState = DEAD;
+                }
+            } else {
+                if (neighbor_counter == 3) {
+                    currentCell.nextState = ALIVE;
+                } else {
+                    currentCell.nextState = DEAD;
+                }
             }
         }
     }
@@ -86,13 +94,16 @@ int main() {
     // grid[3][1].currentState = ALIVE;
     // grid[3][2].currentState = ALIVE;
 
-    grid[15][50].currentState = ALIVE;
-    grid[14][50].currentState = ALIVE;
-    grid[16][50].currentState = ALIVE;
-    grid[15][49].currentState = ALIVE;
-    grid[16][51].currentState = ALIVE;
+    int c_row = ROWS / 2;
+    int c_col = COLS / 2;
+    grid[c_row][c_col].currentState = ALIVE;
+    grid[c_row - 1][c_col].currentState = ALIVE;
+    grid[c_row + 1][c_col].currentState = ALIVE;
+    grid[c_row][c_col - 1].currentState = ALIVE;
+    grid[c_row + 1][c_col + 1].currentState = ALIVE;
+
     while (print_grid(grid) != 0) {
-        usleep(SPEED * 1000);
+        usleep(1000000 / SPEED);
         system("clear");
         update_grid(grid);
     }
