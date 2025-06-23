@@ -58,20 +58,19 @@ void update_grid(Cell grid[ROWS][COLS]) {
                 }
             }
 
-            Cell currentCell = grid[y][x];
-            if (currentCell.currentState == ALIVE) {
+            if (grid[y][x].currentState == ALIVE) {
                 if (neighbor_counter < 2) {
-                    currentCell.nextState = DEAD;
+                    grid[y][x].nextState = DEAD;
                 } else if (neighbor_counter < 4) {
-                    currentCell.nextState = ALIVE;
+                    grid[y][x].nextState = ALIVE;
                 } else {
-                    currentCell.nextState = DEAD;
+                    grid[y][x].nextState = DEAD;
                 }
             } else {
                 if (neighbor_counter == 3) {
-                    currentCell.nextState = ALIVE;
+                    grid[y][x].nextState = ALIVE;
                 } else {
-                    currentCell.nextState = DEAD;
+                    grid[y][x].nextState = DEAD;
                 }
             }
         }
