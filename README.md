@@ -1,5 +1,5 @@
 # Game of Life
-A classic Conway's Game of Life implementation in C
+A classic [Conway's Game of Life](https://en.wikipedia.org/wiki/Conway's_Game_of_Life) implementation in C
 
 ### ToDo
 - [ ] User-declared field dimensions
