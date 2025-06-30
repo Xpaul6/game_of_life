@@ -38,16 +38,22 @@ void init_grid(Game* game) {
 }
 
 void print_grid(Game* game) {
+    char* buffer = malloc(game->rows * (game->cols + 1) + 1);
+
+    char* row_ptr = buffer;
     for (int y = 0; y < game->rows; y++) {
         for (int x = 0; x < game->cols; x++) {
             if (game->grid[y][x].currentState == DEAD) {
-                printf(SYM_DEAD);
+                *row_ptr++ = SYM_DEAD[0];
             } else {
-                printf(SYM_ALIVE);
+                *row_ptr++ = SYM_ALIVE[0];
             }
         }
-        printf("\n");
+        *row_ptr++ = '\n';
     }
+
+    printf("%s", buffer);
+    free(buffer);
 }
 
 void update_grid(Game* game, int* alive_counter) {
