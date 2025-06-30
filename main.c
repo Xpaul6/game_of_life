@@ -5,8 +5,8 @@
 
 #define ESCAPE_CODE "\033[H\033[J"
 
-#define SYM_DEAD "-"
-#define SYM_ALIVE "#"
+#define SYM_DEAD '-'
+#define SYM_ALIVE '#'
 
 typedef enum {
     DEAD,
@@ -44,9 +44,9 @@ void print_grid(Game* game) {
     for (int y = 0; y < game->rows; y++) {
         for (int x = 0; x < game->cols; x++) {
             if (game->grid[y][x].currentState == DEAD) {
-                *row_ptr++ = SYM_DEAD[0];
+                *row_ptr++ = SYM_DEAD;
             } else {
-                *row_ptr++ = SYM_ALIVE[0];
+                *row_ptr++ = SYM_ALIVE;
             }
         }
         *row_ptr++ = '\n';
