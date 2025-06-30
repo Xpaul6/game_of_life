@@ -4,7 +4,7 @@ A classic [Conway's Game of Life](https://en.wikipedia.org/wiki/Conway's_Game_of
 ## ToDo
 - [x] User-declared field dimensions
 - [x] User-declared speed
-- [ ] Cross-platform Makefile
+- [x] Cross-platform Makefile
 - [ ] ?raylib port
 
 ## Screenshot

@@ -18,7 +18,7 @@ typedef struct {
    State nextState; 
 } Cell;
 
-void init_grid(Cell **grid, int COLS, int ROWS) {
+void init_grid(Cell** grid, int COLS, int ROWS) {
     for (int i = 0; i < ROWS; i++) {
         grid[i] = malloc(COLS * sizeof(Cell));
     }
@@ -30,7 +30,7 @@ void init_grid(Cell **grid, int COLS, int ROWS) {
     }
 }
 
-void print_grid(Cell **grid, int COLS, int ROWS) {
+void print_grid(Cell** grid, int COLS, int ROWS) {
     for (int y = 0; y < ROWS; y++) {
         for (int x = 0; x < COLS; x++) {
             if (grid[y][x].currentState == DEAD) {
@@ -43,7 +43,7 @@ void print_grid(Cell **grid, int COLS, int ROWS) {
     }
 }
 
-void update_grid(Cell **grid, int COLS, int ROWS, int *alive_counter) {
+void update_grid(Cell** grid, int COLS, int ROWS, int *alive_counter) {
     for (int y = 0; y < ROWS; y++) {
         for (int x = 0; x < COLS; x++) {
             int neighbor_counter = 0;
@@ -86,13 +86,13 @@ void update_grid(Cell **grid, int COLS, int ROWS, int *alive_counter) {
     *alive_counter = local_alive_counter;
 }
 
-void draw_acorn(Cell **grid, int COLS, int ROWS);
-void draw_glider(Cell **grid, int COLS, int ROWS); 
-void draw_r_pentomino(Cell **grid, int COLS, int ROWS);
-void draw_diehart(Cell **grid, int COLS, int ROWS);
+void draw_acorn(Cell** grid, int COLS, int ROWS);
+void draw_glider(Cell** grid, int COLS, int ROWS); 
+void draw_r_pentomino(Cell** grid, int COLS, int ROWS);
+void draw_diehart(Cell** grid, int COLS, int ROWS);
 
 // entry point
-int main(int argc, char **argv) {
+int main(int argc, char** argv) {
     int ROWS = 35;
     int COLS = 130;
     int SPEED = 10;
@@ -107,7 +107,7 @@ int main(int argc, char **argv) {
         }
     }
 
-    Cell **grid = (Cell**)malloc(ROWS * COLS);
+    Cell** grid = (Cell**)malloc(ROWS * COLS);
 
     init_grid(grid, COLS, ROWS);
 
@@ -140,7 +140,7 @@ int main(int argc, char **argv) {
     return 0;
 }
 
-void draw_acorn(Cell **grid, int COLS, int ROWS) {
+void draw_acorn(Cell** grid, int COLS, int ROWS) {
     int c_row = ROWS / 2;
     int c_col = COLS / 2;
 
@@ -153,7 +153,7 @@ void draw_acorn(Cell **grid, int COLS, int ROWS) {
     grid[c_row + 1][c_col - 3].currentState = ALIVE;
 }
 
-void draw_glider(Cell **grid, int COLS, int ROWS) {
+void draw_glider(Cell** grid, int COLS, int ROWS) {
     grid[1][1].currentState = ALIVE;
     grid[2][2].currentState = ALIVE;
     grid[3][0].currentState = ALIVE;
@@ -161,7 +161,7 @@ void draw_glider(Cell **grid, int COLS, int ROWS) {
     grid[3][2].currentState = ALIVE;
 }
 
-void draw_r_pentomino(Cell **grid, int COLS, int ROWS) {
+void draw_r_pentomino(Cell** grid, int COLS, int ROWS) {
     int c_row = ROWS / 2;
     int c_col = COLS / 2;
     grid[c_row][c_col].currentState = ALIVE;
@@ -172,7 +172,7 @@ void draw_r_pentomino(Cell **grid, int COLS, int ROWS) {
 
 }
 
-void draw_diehart(Cell **grid, int COLS, int ROWS) {
+void draw_diehart(Cell** grid, int COLS, int ROWS) {
     int c_row = ROWS / 2;
     int c_col = COLS / 2;
 
