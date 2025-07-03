@@ -99,6 +99,13 @@ void update_grid(Game* game, int* alive_counter) {
     *alive_counter = local_alive_counter;
 }
 
+void free_grid(Game* game) {
+    for (int i = 0; i < game->rows; i++) {
+        free(game->grid[i]);
+    }
+    free(game->grid);
+}
+
 void draw_acorn(Game* game);
 void draw_glider(Game* game); 
 void draw_r_pentomino(Game* game);
@@ -151,6 +158,8 @@ int main(int argc, char** argv) {
         update_grid(&game, &alive_counter);
         generation_counter++;
     }
+
+    free_grid(&game);
 
     return 0;
 }
